@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Award, Calendar } from "lucide-react"
+import { Award, Calendar, Briefcase, GraduationCap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { CertificateModal } from "@/components/certificate-modal"
 
@@ -23,7 +23,7 @@ export function ExperienceSection() {
     {
       title: "Brand Ambassador",
       company: "Smart Zambia",
-      period: "2025 - Present",
+      period: "2025",
       description:
         "Championing technological innovations and empowering regional initiatives to foster a dynamic tech community.",
     },
@@ -84,7 +84,7 @@ export function ExperienceSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.15,
       },
     },
   }
@@ -95,7 +95,7 @@ export function ExperienceSection() {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.5,
+        duration: 0.4,
       },
     },
   }
@@ -103,63 +103,86 @@ export function ExperienceSection() {
   return (
     <section id="experience" className="py-16">
       <h2 className="text-4xl font-bold text-gradient-blue-green mb-2">Experience</h2>
-      <div className="w-20 h-1 bg-gradient-blue-green mb-8"></div>
+      <div className="w-20 h-1 bg-gradient-blue-green mb-12"></div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="space-y-16">
+        {/* Work Experience */}
         <div>
-          <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-6 flex items-center gap-2">
-            <Calendar className="text-primary-500 dark:text-primary-400" size={24} />
-            Work Experience
-          </h3>
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-green-500 flex items-center justify-center">
+              <Briefcase className="text-white" size={24} />
+            </div>
+            <h3 className="text-2xl font-bold text-slate-800">Work Experience</h3>
+          </div>
+
           <motion.div
-            className="space-y-6"
+            className="relative"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
           >
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md border-l-4 border-gradient-blue-green group hover:shadow-lg transition-shadow"
-                variants={itemVariants}
-              >
-                <h4 className="text-xl font-bold text-gradient-blue-green">{exp.title}</h4>
-                <div className="flex justify-between items-center mb-2">
-                  <p className="text-slate-600 dark:text-slate-300 font-medium">{exp.company}</p>
-                  <p className="text-sm text-slate-500 dark:text-slate-400">{exp.period}</p>
-                </div>
-                <p className="text-slate-700 dark:text-slate-300 mb-4">{exp.description}</p>
+            {/* Timeline line */}
+            <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 to-green-500 hidden md:block" />
 
-                {exp.certificate && (
-                  <CertificateModal
-                    title={exp.certificate.title}
-                    imageUrl={exp.certificate.imageUrl}
-                    issuer={exp.certificate.issuer}
-                    issueDate={exp.certificate.issueDate}
-                  >
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="mt-2 text-primary-600 border-primary-200 hover:border-primary-300 hover:bg-primary-50 group-hover:border-primary-300 transition-all"
-                    >
-                      <Award className="mr-2 h-4 w-4" />
-                      View Certificate
-                    </Button>
-                  </CertificateModal>
-                )}
-              </motion.div>
-            ))}
+            <div className="space-y-6">
+              {experiences.map((exp, index) => (
+                <motion.div key={index} className="relative flex gap-6" variants={itemVariants}>
+                  {/* Timeline dot */}
+                  <div className="hidden md:flex flex-shrink-0 w-12 h-12 rounded-full bg-white border-4 border-blue-500 items-center justify-center z-10">
+                    <span className="text-sm font-bold text-blue-500">{index + 1}</span>
+                  </div>
+
+                  {/* Card */}
+                  <div className="flex-1 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow">
+                    <div className="bg-gradient-to-r from-blue-500/10 to-green-500/10 px-6 py-4 border-b border-slate-100">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                        <h4 className="text-xl font-bold text-slate-800">{exp.title}</h4>
+                        <span className="inline-flex items-center gap-1.5 text-sm text-slate-500 bg-white px-3 py-1 rounded-full">
+                          <Calendar size={14} />
+                          {exp.period}
+                        </span>
+                      </div>
+                      <p className="text-blue-600 font-medium mt-1">{exp.company}</p>
+                    </div>
+                    <div className="px-6 py-4">
+                      <p className="text-slate-600 leading-relaxed">{exp.description}</p>
+                      {exp.certificate && (
+                        <CertificateModal
+                          title={exp.certificate.title}
+                          imageUrl={exp.certificate.imageUrl}
+                          issuer={exp.certificate.issuer}
+                          issueDate={exp.certificate.issueDate}
+                        >
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="mt-4 text-blue-600 border-blue-200 hover:border-blue-300 hover:bg-blue-50 bg-transparent"
+                          >
+                            <Award className="mr-2 h-4 w-4" />
+                            View Certificate
+                          </Button>
+                        </CertificateModal>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
 
+        {/* Education & Certifications */}
         <div>
-          <h3 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
-            <Award className="text-primary-500" size={24} />
-            Education & Certifications
-          </h3>
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-blue-500 flex items-center justify-center">
+              <GraduationCap className="text-white" size={24} />
+            </div>
+            <h3 className="text-2xl font-bold text-slate-800">Education & Certifications</h3>
+          </div>
+
           <motion.div
-            className="space-y-6"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -168,33 +191,43 @@ export function ExperienceSection() {
             {education.map((edu, index) => (
               <motion.div
                 key={index}
-                className="bg-white p-6 rounded-lg shadow-md border-l-4 border-gradient-blue-green group hover:shadow-lg transition-shadow"
+                className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow"
                 variants={itemVariants}
               >
-                <h4 className="text-xl font-bold text-gradient-blue-green">{edu.degree}</h4>
-                <div className="flex justify-between items-center mb-2">
-                  <p className="text-slate-600 font-medium">{edu.institution}</p>
-                  <p className="text-sm text-slate-500">{edu.period}</p>
+                <div className="bg-gradient-to-r from-green-500/10 to-blue-500/10 px-6 py-4 border-b border-slate-100">
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-start justify-between gap-2">
+                      <h4 className="text-lg font-bold text-slate-800 leading-tight">{edu.degree}</h4>
+                      {edu.certificate && <Award className="flex-shrink-0 text-green-500" size={20} />}
+                    </div>
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                      <p className="text-green-600 font-medium text-sm">{edu.institution}</p>
+                      <span className="text-xs text-slate-500 bg-white px-2 py-0.5 rounded-full w-fit">
+                        {edu.period}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-slate-700 mb-4">{edu.description}</p>
-
-                {edu.certificate && (
-                  <CertificateModal
-                    title={edu.certificate.title}
-                    imageUrl={edu.certificate.imageUrl}
-                    issuer={edu.certificate.issuer}
-                    issueDate={edu.certificate.issueDate}
-                  >
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="mt-2 text-primary-600 border-primary-200 hover:border-primary-300 hover:bg-primary-50 group-hover:border-primary-300 transition-all"
+                <div className="px-6 py-4">
+                  <p className="text-slate-600 text-sm leading-relaxed">{edu.description}</p>
+                  {edu.certificate && (
+                    <CertificateModal
+                      title={edu.certificate.title}
+                      imageUrl={edu.certificate.imageUrl}
+                      issuer={edu.certificate.issuer}
+                      issueDate={edu.certificate.issueDate}
                     >
-                      <Award className="mr-2 h-4 w-4" />
-                      View Certificate
-                    </Button>
-                  </CertificateModal>
-                )}
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="mt-4 text-green-600 border-green-200 hover:border-green-300 hover:bg-green-50 bg-transparent"
+                      >
+                        <Award className="mr-2 h-4 w-4" />
+                        View Certificate
+                      </Button>
+                    </CertificateModal>
+                  )}
+                </div>
               </motion.div>
             ))}
           </motion.div>

@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Github, Linkedin, Mail, Instagram, ExternalLink } from "lucide-react"
+import { Github, Linkedin, Mail, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function ContactSection() {
@@ -27,7 +27,7 @@ export function ContactSection() {
               </Link>
 
               <Link
-                href="https://linkedin.com/"
+                href="https://www.linkedin.com/in/thokozile-msoni-513071307"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-slate-700 hover:text-primary-600 transition-colors"
@@ -37,27 +37,17 @@ export function ContactSection() {
               </Link>
 
               <Link
-                href="https://github.com/TKs-virus"
+                href="https://github.com/zile-sec"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-slate-700 hover:text-primary-600 transition-colors"
               >
                 <Github className="text-primary-500" size={20} />
-                <span>GitHub: @TKs-virus</span>
+                <span>GitHub: @zile-sec</span>
               </Link>
 
               <Link
-                href="https://instagram.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-slate-700 hover:text-primary-600 transition-colors"
-              >
-                <Instagram className="text-primary-500" size={20} />
-                <span>Instagram</span>
-              </Link>
-
-              <Link
-                href="https://app.daily.dev/TKs-virus"
+                href="https://dly.to/RCXdaIN3Si2"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-slate-700 hover:text-primary-600 transition-colors"
@@ -75,7 +65,7 @@ export function ContactSection() {
             </p>
             <div className="flex justify-center">
               <Button asChild className="bg-gradient-blue-green hover:opacity-90">
-                <Link href="https://app.daily.dev/TKs-virus" target="_blank" rel="noopener noreferrer">
+                <Link href="https://dly.to/RCXdaIN3Si2" target="_blank" rel="noopener noreferrer">
                   <ExternalLink className="mr-2 h-4 w-4" />
                   Visit My daily.dev Profile
                 </Link>

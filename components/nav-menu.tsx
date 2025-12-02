@@ -26,7 +26,7 @@ export function NavMenu() {
     { name: "Home", href: "/" },
     { name: "Projects", href: "/#projects" },
     { name: "Experience", href: "/#experience" },
-    { name: "Blog", href: "/blog" },
+    { name: "Online Community", href: "/#online-community" },
     { name: "Community", href: "/#community" },
     { name: "Contact", href: "/#contact" },
   ]
